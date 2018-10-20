@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -24,7 +24,7 @@ export class AdminPage {
   steps: string[] = [];
   step: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFirestore, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFirestore, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
   }
 
   addIngredient() {
@@ -42,7 +42,7 @@ export class AdminPage {
   }
 
   addRecipe() {
-    const loader = this.loadingCtrl.create({
+    let loader = this.loadingCtrl.create({
       content: 'Adding recipe...'
     });
     loader.present();
@@ -55,6 +55,18 @@ export class AdminPage {
     })
     .then(ref => {
       loader.dismiss();
+
+      let alert = this.alertCtrl.create({
+        title: 'Success!',
+        subTitle: 'Recipe added.',
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.name = '';
+      this.time = null;
+      this.ingredients = [];
+      this.steps = [];
     });
   }
 
