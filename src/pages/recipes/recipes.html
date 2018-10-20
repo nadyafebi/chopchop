@@ -14,7 +14,9 @@
 
 
 <ion-content padding>
-
+  <ion-item *ngFor="let result of searchResults">
+    {{ result.name }}
+  </ion-item>
 </ion-content>
 
 <ion-footer>
