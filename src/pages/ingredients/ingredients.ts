@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { config } from '../../config/config';
+import * as algoliasearch from 'algoliasearch';
 
 /**
 * Generated class for the IngredientsPage page.
@@ -18,8 +19,14 @@ import { Observable } from 'rxjs';
 export class IngredientsPage {
   ingredients: string[] = [];
   ingredient: string;
+  client: any;
+  index: any;
+  searchResults: object[];
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, public db: AngularFirestore) {
+    this.client = algoliasearch(config.algolia.id, config.algolia.key);
+    this.index = this.client.initIndex('ingredients');
+  }
 
   inArray()
   {
@@ -58,6 +65,14 @@ export class IngredientsPage {
   nextPage() {
     this.navCtrl.push('SettingsPage', {}, {
       animation: 'wd-transition'
+    });
+  }
+
+  searchIngredient() {
+    this.index.search({
+      query: this.ingredient
+    }, (err, result) => {
+      this.searchResults = result.hits;
     });
   }
 }

@@ -21,10 +21,13 @@ Ionic pages and navigation.
 
     <ion-card-content>
       <ion-item>
-        <ion-input [(ngModel)]="ingredient" type="text" placeholder="Enter ingredients here"></ion-input>
+        <ion-input [(ngModel)]="ingredient" (keyup)="searchIngredient()" type="text" placeholder="Enter ingredients here"></ion-input>
         <button (click)="create_list_element()" ion-button icon-only item-end outline small color="dark">
           <ion-icon name="add"></ion-icon>
         </button>
+      </ion-item>
+      <ion-item *ngFor="let result of searchResults">
+        {{ result.name }}
       </ion-item>
     </ion-card-content>
 
