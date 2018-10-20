@@ -25,6 +25,7 @@ export class IngredientsPage {
   client: any;
   index: any;
   searchResults: object[];
+  log: any;
 
   constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera) {
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
@@ -96,7 +97,7 @@ export class IngredientsPage {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
      label_detection.get(imageData).then(labels => {
-       console.log(labels);
+       this.log = labels;
      });
     }, (err) => {
      // Handle error
