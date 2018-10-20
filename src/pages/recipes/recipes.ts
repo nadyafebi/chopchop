@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { config } from '../../config/config';
+import * as algoliasearch from 'algoliasearch';
 
 /**
  * Generated class for the RecipesPage page.
@@ -13,9 +15,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-recipes',
   templateUrl: 'recipes.html',
 })
-export class RecipesPage {
+export class RecipesPage implements OnInit {
+  client: any;
+  index: any;
+  searchResults: object[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.client = algoliasearch(config.algolia.id, config.algolia.key);
+    this.index = this.client.initIndex('recipes');
+  }
+
+  ngOnInit() {
+    this.index.search({}, (err, result) => {
+      this.searchResults = result.hits;
+    });
   }
 
   prevPage() {
