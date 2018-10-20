@@ -11,14 +11,37 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-  <ul>
-    <li class="text" *ngFor="let ingredient of allIngredients | async">
-      {{ ingredient.name }}
-    </li>
-  </ul>
+  <ion-card>
+
+  <ion-card-header style="font-size: 25px">
+    What's in your kitchen today?
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-item>
+      <ion-input [(ngModel)]="ingredient" type="text" placeholder="Enter ingredients here"></ion-input>
+      <button (click)="create_list_element()" ion-button icon-only item-end outline small color="dark">
+        <ion-icon name="add"></ion-icon>
+       </button>
+    </ion-item>
+  </ion-card-content>
+
+</ion-card>
+
+    <ion-list>
+      <ion-item *ngFor="let ingredient of ingredients"> 
+        <ion-checkbox (click) = "delete(ingredient)" color="light" checked="true" item-start></ion-checkbox> 
+         <ion-label (click)="customLabelFunc($event)"> {{ingredient}} </ion-label>
+         <button (click) = "delete(ingredient)">
+        <ion-icon name="trash"></ion-icon> </button>
+      </ion-item> </ion-list>
+  <div padding>
+    
+    <br>
+    <button ion-button block (click)="search()">{{ 'SEARCH' | translate }}</button>
+  </div>
+
 </ion-content>
 
 <ion-footer>
