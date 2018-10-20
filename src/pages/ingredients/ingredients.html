@@ -21,7 +21,7 @@ Ionic pages and navigation.
 
     <ion-card-content>
       <ion-item>
-        <ion-input [(ngModel)]="ingredient" (keyup)="searchIngredient()" type="text" placeholder="Enter ingredients here"></ion-input>
+        <ion-searchbar [(ngModel)]="ingredient" [showCancelButton]="shouldShowCancel" (keyup)="searchIngredient()" type="text" placeholder="Enter ingredients here" autocomplete="on" ></ion-searchbar>
         <button (click)="takePicture()" ion-button icon-only item-end outline small color="dark">
           <ion-icon name="camera"></ion-icon>
         </button>
