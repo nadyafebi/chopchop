@@ -54,4 +54,10 @@ export class IngredientsPage {
     e.preventDefault();
     alert('label clicked');
   }
+
+  nextPage() {
+    this.navCtrl.push('SettingsPage', {}, {
+      animation: 'wd-transition'
+    });
+  }
 }
