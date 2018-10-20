@@ -61,6 +61,7 @@ export class AdminPage {
     })
     .then(ref => {
       this.index.addObjects([{
+        objectID: ref.id,
         name: this.name,
         time: this.time,
         ingredients: this.ingredients
