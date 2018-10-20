@@ -14,7 +14,11 @@
 
 
 <ion-content padding>
-
+  <ul>
+    <li class="text" *ngFor="let ingredient of allIngredients | async">
+      {{ ingredient.name }}
+    </li>
+  </ul>
 </ion-content>
 
 <ion-footer>

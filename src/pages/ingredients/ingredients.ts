@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 /**
  * Generated class for the IngredientsPage page.
@@ -14,8 +16,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'ingredients.html',
 })
 export class IngredientsPage {
+  allIngredients: Observable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFirestore) {
+    this.allIngredients = db.collection('ingredients').valueChanges();
   }
 
   ionViewDidLoad() {

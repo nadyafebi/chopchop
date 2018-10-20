@@ -8,6 +8,9 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { config } from '../config/config';
 
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
@@ -41,6 +44,8 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(config.firebase),
+    AngularFirestoreModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
