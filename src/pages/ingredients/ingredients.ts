@@ -53,8 +53,8 @@ export class IngredientsPage {
   }
 
   delete(ingredient: string){
-    this.ingredients = remove(this.ingredients, ingredient);
-    console.log(this.ingredients);
+    // this.ingredients = remove(this.ingredients, ingredient);
+    // console.log(this.ingredients);
   }
 
   customLabelFunc(e){
