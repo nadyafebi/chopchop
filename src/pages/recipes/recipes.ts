@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the SettingsPage page.
+ * Generated class for the RecipesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,22 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-settings',
-  templateUrl: 'settings.html',
+  selector: 'page-recipes',
+  templateUrl: 'recipes.html',
 })
-export class SettingsPage {
+export class RecipesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   prevPage() {
     this.navCtrl.pop({
-      animation: 'wd-transition'
-    });
-  }
-
-  nextPage() {
-    this.navCtrl.push('RecipesPage', {}, {
       animation: 'wd-transition'
     });
   }

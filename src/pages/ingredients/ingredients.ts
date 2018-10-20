@@ -22,8 +22,9 @@ export class IngredientsPage {
     this.allIngredients = db.collection('ingredients').valueChanges();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad IngredientsPage');
+  nextPage() {
+    this.navCtrl.push('SettingsPage', {}, {
+      animation: 'wd-transition'
+    });
   }
-
 }
