@@ -1,0 +1,38 @@
+<!--
+  Generated template for the AdminIngredientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Admin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item-group>
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input [(ngModel)]="name" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Type</ion-label>
+        <ion-input [(ngModel)]="type" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Price</ion-label>
+        <ion-input [(ngModel)]="price" type="number"></ion-input>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <br>
+  <button (click)="addIngredient()" ion-button block>Add Ingredient</button>
+</ion-content>
