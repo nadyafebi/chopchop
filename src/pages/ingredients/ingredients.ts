@@ -69,10 +69,15 @@ export class IngredientsPage {
   }
 
   searchIngredient() {
-    this.index.search({
-      query: this.ingredient
-    }, (err, result) => {
-      this.searchResults = result.hits;
-    });
+    if (this.ingredient) {
+      this.index.search({
+        query: this.ingredient,
+        hitsPerPage: 3
+      }, (err, result) => {
+        this.searchResults = result.hits;
+      });
+    } else {
+      this.searchResults = [];
+    }
   }
 }
