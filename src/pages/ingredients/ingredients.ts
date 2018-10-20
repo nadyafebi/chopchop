@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
 * Generated class for the IngredientsPage page.
@@ -23,7 +24,7 @@ export class IngredientsPage {
   index: any;
   searchResults: object[];
 
-  constructor(public navCtrl: NavController, public db: AngularFirestore) {
+  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera) {
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
     this.index = this.client.initIndex('ingredients');
   }
@@ -83,5 +84,22 @@ export class IngredientsPage {
     } else {
       this.searchResults = [];
     }
+  }
+
+  takePicture() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+     // Handle error
+    });
   }
 }
