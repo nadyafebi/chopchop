@@ -1,24 +1,31 @@
 const Vision = require('@google-cloud/vision');
+var request = require('request-promise');
 
 function LabelDetector() {
-    this.client = new Vision.ImageAnnotatorClient(GoogleCredential.FromStream());
+    // TODO move these to secure locations
+    this.vision_api_url = 'https://vision.googleapis.com/v1/images:annotate';
+    this.vision_api_key = 'AIzaSyB5owjuJcyQM6rHUnhLXsWqJP2eXdfIz-M';
 }
 
 LabelDetector.prototype.get = async function(imageData){
-    const results = await this.client.labelDetection({
-        image: {
-            content: imageData
-        }
+    const response = await request.post(`${this.vision_api_url}?key=${this.vision_api_key}`, {
+        json: {
+            requests: [
+                {
+                  image:{
+                      content: imageData
+                  },
+                  features:[
+                    {
+                      type:"LABEL_DETECTION",
+                      maxResults:1000
+                    }
+                  ]
+                }
+            ]
+        } 
     });
-
-    let labels = [];
-    results[0].labelAnnotations.forEach(element => (
-        labels.push({
-            description: element.description,
-            score: element.score
-        })
-    ));
-    return labels;
+    return response.responses[0].labelAnnotations;
 }
 
 module.exports = new LabelDetector();
