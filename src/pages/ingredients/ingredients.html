@@ -1,8 +1,8 @@
 <!--
-  Generated template for the IngredientsPage page.
+Generated template for the IngredientsPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
 -->
 <ion-header>
 
@@ -11,46 +11,43 @@
   </ion-navbar>
 
 </ion-header>
+
 <ion-content padding>
   <ion-card>
 
-  <ion-card-header style="font-size: 25px">
-    What's in your kitchen today?
-  </ion-card-header>
+    <ion-card-header style="font-size: 5vw">
+      What's in your kitchen today?
+    </ion-card-header>
 
-  <ion-card-content>
-    <ion-item>
-      <ion-input [(ngModel)]="ingredient" type="text" placeholder="Enter ingredients here"></ion-input>
-      <button (click)="create_list_element()" ion-button icon-only item-end outline small color="dark">
-        <ion-icon name="add"></ion-icon>
-       </button>
-    </ion-item>
-  </ion-card-content>
+    <ion-card-content>
+      <ion-item>
+        <ion-input [(ngModel)]="ingredient" type="text" placeholder="Enter ingredients here"></ion-input>
+        <button (click)="create_list_element()" ion-button icon-only item-end outline small color="dark">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-card-content>
 
-</ion-card>
+  </ion-card>
 
-    <ion-list>
-      <ion-item *ngFor="let ingredient of ingredients"> 
-        <ion-checkbox (click) = "delete(ingredient)" color="light" checked="true" item-start></ion-checkbox> 
-         <ion-label (click)="customLabelFunc($event)"> {{ingredient}} </ion-label>
-         <button (click) = "delete(ingredient)">
-        <ion-icon name="trash"></ion-icon> </button>
-      </ion-item> </ion-list>
-  <div padding>
-    
-    <br>
-    <button ion-button block (click)="search()">{{ 'SEARCH' | translate }}</button>
-  </div>
-
-</ion-content>
-
-<ion-footer>
-  <ion-toolbar padding-left padding-right>
-    <ion-buttons end>
-      <button (click)="nextPage()" ion-button icon-end>
-        <b>Set Budget & Time</b>
-        <ion-icon name="arrow-round-forward"></ion-icon>
+  <ion-list>
+    <ion-item *ngFor="let ingredient of ingredients">
+      <ion-checkbox (click) = "delete(ingredient)" color="light" checked="true" item-start></ion-checkbox>
+      <ion-label (click)="customLabelFunc($event)"> {{ingredient}} </ion-label>
+      <button (click) = "delete(ingredient)">
+        <ion-icon name="trash"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
+    </ion-item>
+  </ion-list>
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar padding-left padding-right>
+      <ion-buttons end>
+        <button (click)="nextPage()" ion-button icon-end>
+          <b>Set Budget & Time</b>
+          <ion-icon name="arrow-round-forward"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>

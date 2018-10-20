@@ -4,11 +4,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 /**
- * Generated class for the IngredientsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+* Generated class for the IngredientsPage page.
+*
+* See https://ionicframework.com/docs/components/#navigation for more info on
+* Ionic pages and navigation.
+*/
 
 @IonicPage()
 @Component({
@@ -16,53 +16,42 @@ import { Observable } from 'rxjs';
   templateUrl: 'ingredients.html',
 })
 export class IngredientsPage {
- amount: number = 12;
-  noMeat: number = 0;
-  noVegg: number = 0;
   ingredients: string[] = [];
   ingredient: string;
 
   constructor(public navCtrl: NavController) { }
 
-
-  search() {
-    this.navCtrl.push('SearchPage', {
-      amount: this.amount,
-      noMeat: this.noMeat,
-      noVegg: this.noVegg
-    });
-  }
-inArray()
-{
+  inArray()
+  {
     var count=this.ingredients.length;
     for(var i=0;i<count;i++)
     {
-        if(this.ingredients[i]=== this.ingredient){return false;}
+      if(this.ingredients[i]=== this.ingredient){return false;}
     }
     return true;
-}
-create_list_element() {
-  if(this.inArray())
-this.ingredients.push(this.ingredient);
+  }
+  create_list_element() {
+    if(this.inArray())
+    this.ingredients.push(this.ingredient);
 
-  
+
   }
 
-remove(array: array, element: object) {
+  remove(array: any[], element: object) {
     const index = array.indexOf(element);
 
     if (index !== -1) {
-        return array.splice(index, 1);
+      return array.splice(index, 1);
     }
-}
-
-  delete(ingredient: string){
-  this.ingredients = remove(this.ingredients, ingredient);
-  console.log(this.ingredients);
   }
 
- customLabelFunc(e){
-      e.preventDefault();
-      alert('label clicked');
-    }
+  delete(ingredient: string){
+    this.ingredients = remove(this.ingredients, ingredient);
+    console.log(this.ingredients);
+  }
+
+  customLabelFunc(e){
+    e.preventDefault();
+    alert('label clicked');
+  }
 }
