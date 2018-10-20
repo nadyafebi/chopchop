@@ -28,6 +28,8 @@
     "@ionic/storage": "2.2.0",
     "@ngx-translate/core": "8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
+    "@types/algoliasearch": "^3.27.8",
+    "algoliasearch": "^3.30.0",
     "firebase": "^5.5.5",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
