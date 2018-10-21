@@ -25,7 +25,7 @@ export class RecipePage implements OnInit {
   budget: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private db: AngularFirestore, public loadingCtrl: LoadingController, private ingredientPvd: IngredientProvider) {
-    ingredientPvd.getIngredients();
+    ingredientPvd.getIngredients(null);
     let loader = loadingCtrl.create({
       content: 'Getting recipe...'
     });

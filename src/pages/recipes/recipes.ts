@@ -28,7 +28,7 @@ export class RecipesPage implements OnInit {
   time: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public loadingCtrl: LoadingController, private ingredientPvd: IngredientProvider) {
-    ingredientPvd.getIngredients();
+    ingredientPvd.getIngredients(null);
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
     this.index = this.client.initIndex('recipes');
   }
@@ -63,11 +63,10 @@ export class RecipesPage implements OnInit {
         this.searchResults = _.uniqBy(result.hits, 'name');
         if (this.budget > 0) {
           this.searchResults.forEach(recipe => {
-            recipe.budget = this.ingredientPvd.calculateBudget(recipe.ingredients);
-            console.log(recipe);
+            recipe["budget"] = this.ingredientPvd.calculateBudget(recipe["ingredients"]);
           });
           this.searchResults = this.searchResults.filter(recipe => {
-            return recipe.budget <= this.budget;
+            return recipe["budget"] <= this.budget;
           });
         }
         loader.dismiss();
