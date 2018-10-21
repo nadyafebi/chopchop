@@ -14,6 +14,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
+  budget: number;
+  time: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
