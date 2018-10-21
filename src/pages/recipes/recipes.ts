@@ -58,7 +58,7 @@ export class RecipesPage implements OnInit {
       }
 
       this.index.search(search, (err, result) => {
-        this.searchResults = result.hits;
+        this.searchResults = _.uniqBy(result.hits, 'name');
         loader.dismiss();
       });
     });
