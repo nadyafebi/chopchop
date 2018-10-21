@@ -5,6 +5,8 @@ import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
+import { ViewChild } from '@angular/core';
+import { Searchbar } from 'ionic-angular';
 
 /**
 * Generated class for the IngredientsPage page.
@@ -45,8 +47,11 @@ export class IngredientsPage {
   create_list_element() {
     if(this.inArray())
     {console.log(this.ingredient)
-    this.ingredients.push(this.ingredient);}
-
+    this.ingredients.push(this.ingredient)
+    this.ingredient=null;
+    this.showelement = false
+    console.log(this.ingredient);
+    }
 
   }
 
