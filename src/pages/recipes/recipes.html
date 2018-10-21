@@ -14,6 +14,7 @@
 
 
 <ion-content padding>
+  <p *ngIf="searchResults.length === 0" class="recipe-warning" margin>No recipe found! :(</p>
   <ion-item *ngFor="let result of searchResults">
     {{ result.name }}
   </ion-item>
