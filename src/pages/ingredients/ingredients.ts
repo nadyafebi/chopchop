@@ -35,7 +35,7 @@ export class IngredientsPage {
     var count=this.ingredients.length;
     for(var i=0;i<count;i++)
     {
-      if("this.ingredients[i]=== this.ingredient"){return false;}
+      if(this.ingredients[i]=== this.ingredient){return false;}
     }
     if(this.ingredient == undefined) {
       return false;}
