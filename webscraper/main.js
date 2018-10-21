@@ -3,7 +3,7 @@
 const recipe = require('./pages/recipe');
 const hub = require('./pages/hub');
 
-const hubURL = "https://www.allrecipes.com/recipes/22740/everyday-cooking/special-collections/hall-of-fame/2016/";
+const hubURL = "https://www.allrecipes.com/recipes/22461/everyday-cooking/allrecipes-magazine-recipes/breakfast-and-brunch/";
 
 /*recipe.parse('https://www.allrecipes.com/recipe/247066/parmesan-crusted-pork-chops/').then((result) => {
     console.log(JSON.stringify(result, null, 2))
