@@ -14,19 +14,23 @@
 
 
 <ion-content padding>
-  <ion-list>
-
+  <div text-center class="section" padding>
+    <h1 class="title-icon"><ion-icon large name="cash"></ion-icon></h1>
+    <h1 class="title">Budget</h1>
+    <p>(in $)</p>
     <ion-item>
-      <ion-label>Budget (in $)</ion-label>
-      <ion-input [(ngModel)]="budget" type="number" text-right></ion-input>
+      <ion-input [(ngModel)]="budget" type="number" placeholder="Unlimited Budget" text-center></ion-input>
     </ion-item>
+  </div>
 
+  <div text-center class="section" padding>
+    <h1 class="title-icon"><ion-icon large name="time"></ion-icon></h1>
+    <h1 class="title">Time</h1>
+    <p>(in minutes)</p>
     <ion-item>
-      <ion-label>Time (in minutes)</ion-label>
-      <ion-input [(ngModel)]="time" type="number" text-right></ion-input>
+      <ion-input [(ngModel)]="time" type="number" placeholder="Unlimited Time" text-center></ion-input>
     </ion-item>
-
-  </ion-list>
+  </div>
 </ion-content>
 
 <ion-footer>

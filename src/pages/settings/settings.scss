@@ -1,3 +1,18 @@
 page-settings {
+  h1, h2, h3 {
+    font-weight: bold;
+  }
 
+  .section {
+    height: 40vh;
+    align-items: center;
+  }
+
+  .title-icon {
+    margin-bottom: 0;
+  }
+
+  .title {
+    margin-top: 0;
+  }
 }
