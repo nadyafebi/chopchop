@@ -20,7 +20,7 @@ Ionic pages and navigation.
     </ion-card-header>
     <ion-card-content>
       <ion-item class="search-bar">
-        <ion-searchbar #mySearchBar [(ngModel)]="ingredient" [showCancelButton]="false" (keyup)="searchIngredient()" type="text" placeholder="Enter ingredients here" ></ion-searchbar>
+        <ion-searchbar #mySearchBar [(ngModel)]="ingredient" [showCancelButton]="false" (keyup)="searchIngredient()" type="text" placeholder="apple, fruit, ..." ></ion-searchbar>
         <button (click)="takePicture()" ion-button icon-only item-end outline small color="dark" class="camera-button">
           <ion-icon name="camera"></ion-icon>
         </button>
@@ -34,14 +34,23 @@ Ionic pages and navigation.
     </ion-card-content>
   </ion-card>
 
-  <ion-list>
+  <ion-list padding-left padding-right>
+    <ion-item *ngIf="ingredients.length === 0">
+      <ion-label>No ingredients yet!</ion-label>
+    </ion-item>
     <ion-item *ngFor="let ingredient of ingredients">
+      <ion-label>{{ ingredient }}</ion-label>
+      <button (click)="delete(ingredient)" ion-button icon-only item-end outline small color="dark" item-end>
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item>
+    <!-- <ion-item *ngFor="let ingredient of ingredients">
       <ion-checkbox (click) = "delete(ingredient)" color="light" checked="true" item-start></ion-checkbox>
       <ion-label (click)="customLabelFunc($event)"> {{ingredient}} </ion-label>
       <button (click) = "delete(ingredient)">
         <ion-icon name="trash"></ion-icon>
       </button>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 
   <!-- <div>{{ log }}</div>

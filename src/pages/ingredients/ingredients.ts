@@ -73,14 +73,13 @@ export class IngredientsPage {
   remove(array: any[], element: object) {
     const index = array.indexOf(element);
 
-    if (index !== -1) {
+    if (index > -1) {
       return array.splice(index, 1);
     }
   }
 
   delete(ingredient: string){
-    // this.ingredients = remove(this.ingredients, ingredient);
-    // console.log(this.ingredients);
+    this.remove(this.ingredients, ingredient);
   }
 
   customLabelFunc(e){
@@ -148,10 +147,10 @@ export class IngredientsPage {
   }
 
   addSearch(result: any) {
-    this.ingredients.push(result.name);
-    this.ingredient = null;
-    this.searchResults = [];
-
-    console.log(this.dbIngredients);
+    if (this.inArray()) {
+      this.ingredients.push(result.name);
+      this.ingredient = null;
+      this.searchResults = [];
+    }
   }
 }
