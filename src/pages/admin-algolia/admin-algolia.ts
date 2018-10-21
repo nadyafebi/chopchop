@@ -27,8 +27,8 @@ export class AdminAlgoliaPage {
       return actions;
     }).subscribe(snapshots => {
       snapshots.forEach(doc => {
-        let id = doc.payload.doc.id;
-        let data = doc.payload.doc.data();
+        let id: string = doc.payload.doc.id;
+        let data: any = doc.payload.doc.data();
         this.dbRecipes.push({
           objectID: id,
           name: data.name,

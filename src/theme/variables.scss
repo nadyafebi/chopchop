@@ -25,7 +25,7 @@ $background-color:  #fff;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #e84e3c,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
@@ -77,3 +77,19 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url(../assets/font/SourceSansPro-Regular.ttf) format("ttf");
+  font-weight: 200
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url(../assets/font/SourceSansPro-Bold.ttf) format("ttf");
+  font-weight: bold
+}
+
+$font-family-md-base: "Source Sans Pro";
+$font-family-ios-base: "Source Sans Pro";
+$font-family-wp-base: "Source Sans Pro";
