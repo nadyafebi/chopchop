@@ -5,7 +5,8 @@ import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
-import * as label_detection from '../../gcloud/label_detection';
+import { LabelDetector } from '../../gcloud/label_detection';
+const LD = new LabelDetector();
 
 /**
 * Generated class for the IngredientsPage page.
@@ -91,7 +92,7 @@ export class IngredientsPage {
   takePicture() {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -99,7 +100,7 @@ export class IngredientsPage {
     this.camera.getPicture(options).then((imageData) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
-     label_detection.get(imageData).then(labels => {
+     LD.get(imageData).then(labels => {
        console.log(labels);
      });
     }, (err) => {
