@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable, forkJoin } from 'rxjs';
+import 'rxjs/Rx';
 import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
 import { ViewChild } from '@angular/core';
 import { Searchbar } from 'ionic-angular';
+import * as _ from 'lodash';
 
 import { LabelDetector } from '../../gcloud/label_detection';
 const label_detection = new LabelDetector();
@@ -31,8 +34,17 @@ export class IngredientsPage {
   searchResults: object[];
   showelement: any;
   log: any;
+  dbIngredients: object[] = [];
 
-  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage) {
+  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+    //this.dbIngredients = db.collection('ingredients').valueChanges();
+    db.collection('ingredients').valueChanges().map(actions => {
+      return actions;
+    }).subscribe(snapshots => {
+      snapshots.forEach(doc => {
+        this.dbIngredients.push(doc);
+      });
+    });
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
     this.index = this.client.initIndex('ingredients');
   }
@@ -111,8 +123,26 @@ export class IngredientsPage {
     this.camera.getPicture(options).then((imageData) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
+     let loader = this.loadingCtrl.create({
+       content: 'Processing picture...'
+     });
+     loader.present();
      label_detection.get(imageData).then(labels => {
        this.log = JSON.stringify(labels);
+       let guesses = _.filter(labels, label => {
+         return _.includes(_.map(this.dbIngredients, 'name'), label.description) && label.score > 0.5;
+       });
+       loader.dismiss();
+       if (guesses.length > 0) {
+         this.ingredients.push(guesses[0].description);
+       } else {
+         let alert = this.alertCtrl.create({
+           title: "Can't Find Ingredient",
+           subTitle: "There doesn't seem to be any ingredient in the picture.",
+           buttons: ['OK']
+         });
+         alert.present();
+       }
      });
     }, (err) => {
      // Handle error
@@ -123,5 +153,7 @@ export class IngredientsPage {
     this.ingredients.push(result.name);
     this.ingredient = null;
     this.searchResults = [];
+
+    console.log(this.dbIngredients);
   }
 }
