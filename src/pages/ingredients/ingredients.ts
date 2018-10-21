@@ -113,7 +113,7 @@ export class IngredientsPage {
     });
   }
 
-  addSearch(result: object) {
+  addSearch(result: any) {
     this.ingredients.push(result.name);
     this.ingredient = null;
     this.searchResults = [];
