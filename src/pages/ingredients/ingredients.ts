@@ -112,4 +112,10 @@ export class IngredientsPage {
      // Handle error
     });
   }
+
+  addSearch(result: obj) {
+    this.ingredients.push(result.name);
+    this.ingredient = null;
+    this.searchResults = [];
+  }
 }

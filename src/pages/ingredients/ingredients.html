@@ -28,8 +28,8 @@ Ionic pages and navigation.
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-item>
-      <ion-item *ngFor="let result of searchResults" style = "padding-left: 4em">
-        {{ result.name }}
+      <ion-item (click)="addSearch(result)" *ngFor="let result of searchResults" style = "padding-left: 4em">
+        <ion-label>{{ result.name }}</ion-label>
       </ion-item>
     </ion-card-content>
   </ion-card>
