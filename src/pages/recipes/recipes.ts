@@ -48,10 +48,16 @@ export class RecipesPage implements OnInit {
     })
     .then (time => {
       this.time = time;
-      console.log(this.ingredients.join(' '));
-      this.index.search({
-        query: this.ingredients.join(' ')
-      }, (err, result) => {
+
+      let search = {};
+      if (this.ingredients.length > 0) {
+        search.query = this.ingredients.join(' ');
+      }
+      if (this.time > 0) {
+        search.filters = 'time <= ' + this.time;
+      }
+
+      this.index.search(search, (err, result) => {
         this.searchResults = result.hits;
         loader.dismiss();
       });
