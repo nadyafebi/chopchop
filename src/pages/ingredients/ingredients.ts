@@ -9,6 +9,7 @@ import { Storage } from '@ionic/storage';
 import { ViewChild } from '@angular/core';
 import { Searchbar } from 'ionic-angular';
 import * as _ from 'lodash';
+import { IngredientProvider } from '../../providers/ingredient/ingredient';
 
 import { LabelDetector } from '../../gcloud/label_detection';
 const label_detection = new LabelDetector();
@@ -35,14 +36,15 @@ export class IngredientsPage {
   log: any;
   dbIngredients: object[] = [];
 
-  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
-    db.collection('ingredients').valueChanges().map(actions => {
-      return actions;
-    }).subscribe(snapshots => {
-      snapshots.forEach(doc => {
-        this.dbIngredients.push(doc);
-      });
-    });
+  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public ingredientPvd: IngredientProvider) {
+    ingredientPvd.getIngredients(this.dbIngredients);
+    // db.collection('ingredients').valueChanges().map(actions => {
+    //   return actions;
+    // }).subscribe(snapshots => {
+    //   snapshots.forEach(doc => {
+    //     this.dbIngredients.push(doc);
+    //   });
+    // });
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
     this.index = this.client.initIndex('ingredients');
   }
@@ -70,7 +72,7 @@ export class IngredientsPage {
 
   }
 
-  remove(array: any[], element: object) {
+  remove(array: any[], element: any) {
     const index = array.indexOf(element);
 
     if (index > -1) {

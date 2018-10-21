@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
 import * as _ from 'lodash';
+import { IngredientProvider } from '../../providers/ingredient/ingredient';
 
 /**
  * Generated class for the RecipesPage page.
@@ -26,7 +27,8 @@ export class RecipesPage implements OnInit {
   budget: number;
   time: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public loadingCtrl: LoadingController, private ingredientPvd: IngredientProvider) {
+    ingredientPvd.getIngredients();
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
     this.index = this.client.initIndex('recipes');
   }
@@ -49,7 +51,7 @@ export class RecipesPage implements OnInit {
     .then (time => {
       this.time = time;
 
-      let search = {};
+      let search: any = {};
       if (this.ingredients.length > 0) {
         search.query = this.ingredients.join(' ');
       }
@@ -59,6 +61,15 @@ export class RecipesPage implements OnInit {
 
       this.index.search(search, (err, result) => {
         this.searchResults = _.uniqBy(result.hits, 'name');
+        if (this.budget > 0) {
+          this.searchResults.forEach(recipe => {
+            recipe.budget = this.ingredientPvd.calculateBudget(recipe.ingredients);
+            console.log(recipe);
+          });
+          this.searchResults = this.searchResults.filter(recipe => {
+            return recipe.budget <= this.budget;
+          });
+        }
         loader.dismiss();
       });
     });

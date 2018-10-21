@@ -14,6 +14,7 @@ import { config } from '../config/config';
 
 import { Settings } from '../providers';
 import { MyApp } from './app.component';
+import { IngredientProvider } from '../providers/ingredient/ingredient';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -65,7 +66,8 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    IngredientProvider
   ]
 })
 export class AppModule { }
