@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable, forkJoin } from 'rxjs';
-import 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
 import { Camera, CameraOptions } from '@ionic-native/camera';

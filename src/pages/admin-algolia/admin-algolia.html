@@ -1,0 +1,19 @@
+<!--
+  Generated template for the AdminAlgoliaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Admin: Algolia</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p>Number of docs: <b>{{ dbRecipes.length }}</b></p>
+  <button (click)="sendToAlgolia()" ion-button block>Send</button>
+</ion-content>
