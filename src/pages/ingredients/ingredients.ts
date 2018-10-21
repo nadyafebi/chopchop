@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Storage } from '@ionic/storage';
 
 import { LabelDetector } from '../../gcloud/label_detection';
 const LD = new LabelDetector();
@@ -27,7 +28,7 @@ export class IngredientsPage {
   index: any;
   searchResults: object[];
 
-  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera) {
+  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage) {
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
     this.index = this.client.initIndex('ingredients');
   }
@@ -37,7 +38,7 @@ export class IngredientsPage {
     var count=this.ingredients.length;
     for(var i=0;i<count;i++)
     {
-      if("this.ingredients[i]=== this.ingredient"){return false;}
+      if(this.ingredients[i]=== this.ingredient){return false;}
     }
     if(this.ingredient == undefined) {
       return false;}
@@ -71,6 +72,7 @@ export class IngredientsPage {
   }
 
   nextPage() {
+    this.storage.set('ingredients', this.ingredients);
     this.navCtrl.push('SettingsPage', {}, {
       animation: 'wd-transition'
     });
