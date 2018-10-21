@@ -43,7 +43,7 @@
     "firebase": "^5.5.5",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
-    "request-promise": "^4.2.2",
+    "request-promise": "^4.1.42",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "sw-toolbox": "3.6.0",

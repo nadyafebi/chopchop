@@ -1,4 +1,5 @@
-var request = require('request-promise');
+declare function require(path: string): any;
+const request = require('request-promise');
 
 export class LabelDetector {
     vision_api_url: 'https://vision.googleapis.com/v1/images:annotate';
