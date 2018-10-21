@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { Storage } from '@ionic/storage';
 import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
+import * as _ from 'lodash';
 
 /**
  * Generated class for the RecipesPage page.
@@ -56,6 +57,10 @@ export class RecipesPage implements OnInit {
       })
     });
   }
+
+  listIngredients(list: object[]) {
+    return _.map(list, 'name').join(', ');
+  };
 
   prevPage() {
     this.navCtrl.pop({

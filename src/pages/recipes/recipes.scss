@@ -2,4 +2,20 @@ page-recipes {
   .recipe-warning {
     font-size: 5vw;
   }
+
+  ion-card-content {
+    p {
+      display: inline-block;
+      width: 40%;
+    }
+
+    .list-ingredients {
+      position: absolute;
+      margin-right: 45px;
+      right: 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
 }

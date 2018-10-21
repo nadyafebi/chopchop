@@ -15,9 +15,19 @@
 
 <ion-content padding>
   <p *ngIf="searchResults.length === 0" class="recipe-warning" margin>No recipe found! :(</p>
-  <ion-item *ngFor="let result of searchResults">
-    {{ result.name }}
-  </ion-item>
+  <ion-card *ngFor="let result of searchResults">
+    <img [src]="result.img">
+
+    <ion-card-header>
+      <b>{{ result.name }}</b>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><ion-icon name="clock"></ion-icon> {{ result.time }} min</p>
+      <p text-right class="list-ingredients">{{ listIngredients(result.ingredients) }}</p>
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>
 
 <ion-footer>
