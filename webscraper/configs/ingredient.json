@@ -1,0 +1,28 @@
+{
+    "quantity": [
+        " tablespoons",
+        " teaspoons",
+        " cups",
+        " pinches",
+        " ounces",
+        " cloves",
+        " pounds",
+        " pieces",
+
+        " serving",
+        " cup",
+        " clove",
+        " teaspoon",
+        " pinch",
+        " bunch",
+        " tablespoon",
+        " ounce",
+        " pound",
+        ""
+    ],
+    "blacklist": [
+        "Add all ingredients to list",
+        "Salad:",
+        "Lemon Vinaigrette:"
+    ]
+}

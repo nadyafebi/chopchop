@@ -1,0 +1,5 @@
+npm install
+npm start > your-file-name.json
+
+Don't forget to clean up the top of the JSON file 
+(delete everything above the first bracket)

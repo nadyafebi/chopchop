@@ -1,0 +1,14 @@
+{
+  "name": "allrecipes-scraper",
+  "version": "0.0.1",
+  "author": "Adi",
+  "private": true,
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "request-promise": "^4.2.2",
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.11"
+  }
+}
