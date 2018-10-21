@@ -18,7 +18,8 @@ import * as algoliasearch from 'algoliasearch';
 })
 export class AdminPage {
   name: string;
-  time: string;
+  time: number;
+  img: string;
   ingredients: object[] = [];
   ingredientName: string;
   ingredientHowMany: string;
