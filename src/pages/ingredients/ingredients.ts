@@ -8,6 +8,9 @@ import { Storage } from '@ionic/storage';
 import { ViewChild } from '@angular/core';
 import { Searchbar } from 'ionic-angular';
 
+import { LabelDetector } from '../../gcloud/label_detection';
+const label_detection = new LabelDetector();
+
 /**
 * Generated class for the IngredientsPage page.
 *
@@ -27,6 +30,7 @@ export class IngredientsPage {
   index: any;
   searchResults: object[];
   showelement: any;
+  log: any;
 
   constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage) {
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
@@ -99,7 +103,7 @@ export class IngredientsPage {
   takePicture() {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -107,7 +111,9 @@ export class IngredientsPage {
     this.camera.getPicture(options).then((imageData) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
+     label_detection.get(imageData).then(labels => {
+       this.log = JSON.stringify(labels);
+     });
     }, (err) => {
      // Handle error
     });
