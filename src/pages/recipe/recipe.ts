@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
 
@@ -22,7 +22,12 @@ export class RecipePage implements OnInit {
   ingredients: object[];
   steps: string[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private db: AngularFirestore) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private db: AngularFirestore, public loadingCtrl: LoadingController) {
+    let loader = loadingCtrl.create({
+      content: 'Getting recipe...'
+    });
+    loader.present();
+
     storage.get('recipe')
     .then(recipe => {
       db.collection('recipes').doc(recipe).ref.get()
@@ -33,6 +38,8 @@ export class RecipePage implements OnInit {
         this.time = data.time;
         this.ingredients = data.ingredients;
         this.steps = data.steps;
+
+        loader.dismiss();
       });
     });
   }
