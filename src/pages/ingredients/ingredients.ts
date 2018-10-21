@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Storage } from '@ionic/storage';
 
 /**
 * Generated class for the IngredientsPage page.
@@ -24,7 +25,7 @@ export class IngredientsPage {
   index: any;
   searchResults: object[];
 
-  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera) {
+  constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage) {
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
     this.index = this.client.initIndex('ingredients');
   }
@@ -68,6 +69,7 @@ export class IngredientsPage {
   }
 
   nextPage() {
+    this.storage.set('ingredients', this.ingredients);
     this.navCtrl.push('SettingsPage', {}, {
       animation: 'wd-transition'
     });
