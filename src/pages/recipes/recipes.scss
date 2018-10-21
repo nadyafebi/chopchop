@@ -6,10 +6,14 @@ page-recipes {
   ion-card-content {
     p {
       display: inline-block;
-      width: 40%;
+    }
+
+    .status-recipe {
+      width: 60%;
     }
 
     .list-ingredients {
+      width: 40%;
       position: absolute;
       margin-right: 45px;
       right: 0;

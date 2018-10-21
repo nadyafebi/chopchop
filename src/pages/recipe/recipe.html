@@ -17,7 +17,10 @@
   <img [src]="img">
   <div padding>
     <h1>{{ name }}</h1>
-    <span><ion-icon name="time"></ion-icon> {{ time }} min</span>
+    <p>
+      <span><ion-icon name="time"></ion-icon> {{ time }} min</span>
+      <span *ngIf="budget > 0">&nbsp;&nbsp;<ion-icon name="cash"></ion-icon> ${{ budget }}</span>
+    </p>
   </div>
 
   <ion-list class="list-recipe">

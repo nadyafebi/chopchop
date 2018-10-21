@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
+import { IngredientProvider } from '../../providers/ingredient/ingredient';
 
 /**
  * Generated class for the RecipePage page.
@@ -21,8 +22,10 @@ export class RecipePage implements OnInit {
   time: number;
   ingredients: object[];
   steps: string[];
+  budget: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private db: AngularFirestore, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private db: AngularFirestore, public loadingCtrl: LoadingController, private ingredientPvd: IngredientProvider) {
+    ingredientPvd.getIngredients();
     let loader = loadingCtrl.create({
       content: 'Getting recipe...'
     });
@@ -38,6 +41,7 @@ export class RecipePage implements OnInit {
         this.time = data.time;
         this.ingredients = data.ingredients;
         this.steps = data.steps;
+        this.budget = ingredientPvd.calculateBudget(this.ingredients);
 
         loader.dismiss();
       });

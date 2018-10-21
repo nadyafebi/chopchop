@@ -23,7 +23,10 @@
     </ion-card-header>
 
     <ion-card-content>
-      <p><ion-icon name="time"></ion-icon> {{ result.time }} min</p>
+      <p class="status-recipe">
+        <span><ion-icon name="time"></ion-icon> {{ result.time }} min</span>&nbsp;&nbsp;
+        <span *ngIf="budget > 0 && result.budget > 0"><ion-icon name="cash"></ion-icon> ${{ result.budget }}</span>
+      </p>
       <p text-right class="list-ingredients">{{ listIngredients(result.ingredients) }}</p>
     </ion-card-content>
 
