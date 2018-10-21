@@ -26,6 +26,7 @@ export class IngredientsPage {
   client: any;
   index: any;
   searchResults: object[];
+  showelement: any;
 
   constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage) {
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
