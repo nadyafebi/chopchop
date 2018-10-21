@@ -16,19 +16,19 @@ Ionic pages and navigation.
   <ion-card>
 
     <ion-card-header style="font-size: 5vw">
-      <br> What's in <br> your kitchen today? <br>
+      What's in your kitchen today?
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
-        <ion-searchbar #mySearchBar [(ngModel)]="ingredient" [showCancelButton]="shouldShowCancel" (keyup)="searchIngredient()" type="text" placeholder="Enter ingredients here" ></ion-searchbar>
-        <button (click)="takePicture()" ion-button icon-only item-end outline small color="dark">
+      <ion-item class="search-bar">
+        <ion-searchbar #mySearchBar [(ngModel)]="ingredient" [showCancelButton]="false" (keyup)="searchIngredient()" type="text" placeholder="Enter ingredients here" ></ion-searchbar>
+        <button (click)="takePicture()" ion-button icon-only item-end outline small color="dark" class="camera-button">
           <ion-icon name="camera"></ion-icon>
         </button>
-        <button (click)="create_list_element()" ion-button icon-only item-end outline small color="dark">
+        <button (click)="create_list_element()" ion-button icon-only item-end outline small color="dark" class="add-button">
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-item>
-      <ion-item *ngFor="let result of searchResults" style = "padding-left: 4.5em">
+      <ion-item *ngFor="let result of searchResults" style = "padding-left: 4em">
         {{ result.name }}
       </ion-item>
     </ion-card-content>

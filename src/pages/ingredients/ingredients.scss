@@ -1,3 +1,47 @@
 page-ingredients {
+  ion-card-header {
+    padding-bottom: 0 !important;
+  }
 
+  ion-card-content {
+    padding-bottom: 0 !important;
+
+    .search-bar {
+      padding-left: 0 !important;
+
+      .item-inner {
+        padding-right: 0 !important;
+      }
+    }
+  }
+
+  .card-content {
+    padding: 0;
+  }
+
+  .item-block {
+    padding-left: 8px;
+  }
+
+  .camera-button {
+    position: absolute;
+    right: 50px;
+    top: 6px;
+    width: 2.1em;
+    border-radius: 100%;
+  }
+
+  .add-button {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    width: 2.1em;
+    border-radius: 100%;
+  }
+
+  .input-wrapper > ion-label {
+    margin: 0;
+  }
+
+  .searchbar-clear-icon { display: none !important; }
 }
