@@ -54,7 +54,7 @@ export class RecipesPage implements OnInit {
       }, (err, result) => {
         this.searchResults = result.hits;
         loader.dismiss();
-      })
+      });
     });
   }
 
@@ -66,6 +66,11 @@ export class RecipesPage implements OnInit {
     this.navCtrl.pop({
       animation: 'wd-transition'
     });
+  }
+
+  goToRecipe(id: string) {
+    this.storage.set('recipe', id);
+    this.navCtrl.push('RecipePage');
   }
 
 }

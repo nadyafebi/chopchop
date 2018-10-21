@@ -37,7 +37,6 @@ export class IngredientsPage {
   dbIngredients: object[] = [];
 
   constructor(public navCtrl: NavController, public db: AngularFirestore, private camera: Camera, private storage: Storage, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
-    //this.dbIngredients = db.collection('ingredients').valueChanges();
     db.collection('ingredients').valueChanges().map(actions => {
       return actions;
     }).subscribe(snapshots => {

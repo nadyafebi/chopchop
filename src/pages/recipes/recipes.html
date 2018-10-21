@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <p *ngIf="searchResults.length === 0" class="recipe-warning" margin>No recipe found! :(</p>
-  <ion-card *ngFor="let result of searchResults">
+  <ion-card (click)="goToRecipe(result.objectID)" *ngFor="let result of searchResults">
     <img [src]="result.img">
 
     <ion-card-header>
