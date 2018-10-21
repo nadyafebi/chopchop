@@ -22,14 +22,14 @@
 
   <ion-list class="list-recipe">
     <ion-item-group>
-      <ion-item-divider color="light">Ingredients</ion-item-divider>
+      <ion-item-divider color="light"><b>Ingredients</b></ion-item-divider>
       <ion-item *ngFor="let ingredient of ingredients">
         <p>{{ ingredient.howMany }} {{ ingredient.name }}</p>
       </ion-item>
     </ion-item-group>
 
     <ion-item-group>
-      <ion-item-divider color="light">Steps</ion-item-divider>
+      <ion-item-divider color="light"><b>Steps</b></ion-item-divider>
       <ion-item *ngFor="let step of steps">
         <p>{{ step }}</p>
       </ion-item>
