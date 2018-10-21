@@ -38,13 +38,13 @@ export class AdminIngredientPage {
     this.db.collection('ingredients').add({
       name: this.name,
       type: this.type,
-      price: this.price
+      price: Number(this.price)
     })
     .then(ref => {
       this.index.addObjects([{
         name: this.name,
         type: this.type,
-        price: this.price
+        price: Number(this.price)
       }], (err, content) => {
         loader.dismiss();
 
