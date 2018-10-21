@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { config } from '../../config/config';
 import * as algoliasearch from 'algoliasearch';
 
@@ -20,14 +21,33 @@ export class RecipesPage implements OnInit {
   index: any;
   searchResults: object[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  ingredients: string[];
+  budget: number;
+  time: number;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
     this.client = algoliasearch(config.algolia.id, config.algolia.key);
     this.index = this.client.initIndex('recipes');
   }
 
   ngOnInit() {
-    this.index.search({}, (err, result) => {
-      this.searchResults = result.hits;
+    this.storage.get('ingredients')
+    .then(ingredients => {
+      this.ingredients = ingredients;
+      return this.storage.get('budget');
+    })
+    .then(budget => {
+      this.budget = budget;
+      return this.storage.get('time');
+    })
+    .then (time => {
+      this.time = time;
+      console.log(this.ingredients.join(' '));
+      this.index.search({
+        query: this.ingredients.join(' ')
+      }, (err, result) => {
+        this.searchResults = result.hits;
+      })
     });
   }
 
