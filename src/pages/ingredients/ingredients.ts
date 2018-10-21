@@ -104,7 +104,7 @@ export class IngredientsPage {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
      label_detection.get(imageData).then(labels => {
-       this.log = labels;
+       this.log = JSON.stringify(labels);
      });
     }, (err) => {
      // Handle error
