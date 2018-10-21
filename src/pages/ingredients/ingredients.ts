@@ -47,11 +47,11 @@ export class IngredientsPage {
   }
   create_list_element() {
     if(this.inArray())
-    {console.log(this.ingredient)
-    this.ingredients.push(this.ingredient)
-    this.ingredient=null;
-    this.showelement = false
-    console.log(this.ingredient);
+    {
+      this.ingredients.push(this.ingredient)
+      this.ingredient=null;
+      this.searchResults = [];
+      this.showelement = false
     }
 
   }
@@ -75,6 +75,8 @@ export class IngredientsPage {
   }
 
   nextPage() {
+    this.ingredient = null;
+    this.searchResults = [];
     this.storage.set('ingredients', this.ingredients);
     this.navCtrl.push('SettingsPage', {}, {
       animation: 'wd-transition'
