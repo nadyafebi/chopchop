@@ -55,7 +55,7 @@ export class AdminPage {
 
     this.db.collection('recipes').add({
       name: this.name,
-      time: this.time,
+      time: Number(this.time),
       ingredients: this.ingredients,
       steps: this.steps
     })
@@ -63,7 +63,7 @@ export class AdminPage {
       this.index.addObjects([{
         objectID: ref.id,
         name: this.name,
-        time: this.time,
+        time: Number(this.time),
         ingredients: this.ingredients
       }], (err, content) => {
         loader.dismiss();
